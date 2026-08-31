@@ -528,14 +528,20 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 5.6rem);
+  font-size: clamp(3.4rem, 9vw, 6.2rem);
   font-weight: 700;
   line-height: 0.92;
-  letter-spacing: -0.02em;
-  background: linear-gradient(175deg, var(--text) 42%, #6ba07e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  /* Ombre décalée façon "sticker" manga + contour à l'encre */
+  -webkit-text-stroke: 2px #06100B;
+  text-shadow:
+    3px 3px 0 var(--accent),
+    6px 6px 0 rgba(6, 16, 11, 0.9);
+  /* Léger penché dynamique */
+  transform: rotate(-3deg) skewX(-5deg);
+  transform-origin: left center;
   position: relative;
 }
 .hero__brush {
