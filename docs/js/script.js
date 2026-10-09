@@ -14,12 +14,12 @@ const SKILLS = [
   {
     title: "Frontend",
     icon: "layout",
-    items: ["JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS"],
+    items: ["React", "Vue.js", "Angular", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Backend",
     icon: "server",
-    items: ["Node.js", "Python", "Java", "PHP"],
+    items: ["Java / Spring Boot", "Node.js / Express", "Python / Flask"],
   },
   {
     title: "Base de données",
@@ -29,7 +29,7 @@ const SKILLS = [
   {
     title: "Outils / DevOps",
     icon: "tools",
-    items: ["Git", "GitHub", "Docker"],
+    items: ["Git", "GitHub", "Docker", "CI/CD"],
   },
 ];
 
@@ -37,13 +37,24 @@ const SKILLS = [
    Mettez `demo` à null (ou supprimez-le) pour masquer le bouton Démo. */
 const PROJECTS = [
   {
+    name: "BudgetFlow — Gestion de budget",
+    context: "Projet perso · Full-stack",
+    description:
+      "Application full-stack de gestion de budget personnel : un backend Spring Boot (API REST, authentification JWT, base PostgreSQL) et un frontend Angular, le tout conteneurisé avec Docker et livré en intégration continue (CI).",
+    tags: ["Java", "Spring Boot", "Angular", "PostgreSQL", "JWT", "Docker"],
+    image: null,
+    github: "https://github.com/Buzz30Gotcho/budgetflow",
+    demo: null,
+    featured: true,
+  },
+  {
     name: "SAJA — Livraison de luxe",
     context: "Projet d'école · Ynov Ydays 2025",
     description:
       "Projet réalisé dans le cadre de ma formation (Ynov, Ydays 2025). Plateforme e-commerce et conciergerie de livraison haut de gamme : boutique client avec suivi de commande en temps réel, et tableau de bord coursier (missions, position GPS, statistiques).",
     tags: ["React", "Node.js", "Express", "Supabase"],
     image: "assets/images/saja.png",
-    github: "https://github.com/Buzz30Gotcho/Ynov_Ydays_2025_e_commerce",
+    github: "https://github.com/Buzz30Gotcho/saja-luxury-delivery",
     demo: null,
   },
   {
@@ -53,7 +64,7 @@ const PROJECTS = [
       "Application web de réservation de billets de cinéma bâtie en architecture microservices : un frontend Vue.js dialogue avec une API Gateway qui orchestre trois services indépendants (authentification JWT en Flask, catalogue de films en PHP, séances en Node.js), chacun avec sa propre base PostgreSQL, le tout conteneurisé avec Docker.",
     tags: ["Vue.js", "Microservices", "Node.js", "Docker", "PostgreSQL"],
     image: "assets/images/central-cinema.png",
-    github: "https://github.com/Buzz30Gotcho/micro_service_cinema_ynov",
+    github: "https://github.com/Buzz30Gotcho/cinema-microservices",
     demo: null,
   },
 ];
@@ -61,9 +72,9 @@ const PROJECTS = [
 /* Flux full-stack mis en avant dans le hero (signature visuelle).
    Chaque couche reprend des technos réellement présentes dans SKILLS. */
 const STACK = [
-  { icon: "layout", label: "Front-end", meta: "React · Vue · TypeScript" },
+  { icon: "layout", label: "Front-end", meta: "React · Vue · Angular" },
   { icon: "api", label: "API", meta: "REST · JWT" },
-  { icon: "server", label: "Back-end", meta: "Node · Java · PHP" },
+  { icon: "server", label: "Back-end", meta: "Spring Boot · Node · Flask" },
   { icon: "database", label: "Base de données", meta: "PostgreSQL · Supabase" },
 ];
 
@@ -131,7 +142,6 @@ function renderSkills() {
   grid.innerHTML = SKILLS.map(
     (cat, i) => `
     <article class="skill-cat panel reveal">
-      ${CORNERS}
       <span class="skill-cat__no" aria-hidden="true">${pad2(i)}</span>
       <div class="skill-cat__head">
         <span class="skill-cat__icon">${ICONS[cat.icon] || ""}</span>
@@ -153,8 +163,10 @@ const externalIcon =
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H7v10h10v-3h2v5H5V5z"/></svg>';
 
 /* Build one project "case". `i` is the original index (drives numbering).
-   `flag` shows the "À LA UNE" ribbon (used for the hero highlight). */
-function projectCard(p, i, flag) {
+   `p.featured` met le projet en vedette (grande carte éditoriale + ruban). */
+function projectCard(p, i) {
+  const featured = !!p.featured;
+
   const tags = p.tags
     .map((t) => `<span class="project__tag">${escapeHtml(t)}</span>`)
     .join("");
@@ -165,7 +177,7 @@ function projectCard(p, i, flag) {
       )}" target="_blank" rel="noopener noreferrer">${externalIcon} Voir le projet</a>`
     : "";
 
-  const ribbon = flag
+  const ribbon = featured
     ? '<span class="project__flag" aria-hidden="true">À LA UNE</span>'
     : "";
 
@@ -179,7 +191,7 @@ function projectCard(p, i, flag) {
     : '<div class="project__motif" aria-hidden="true"></div>';
 
   return `
-    <article class="project panel reveal">
+    <article class="project panel reveal${featured ? " project--featured" : ""}">
       ${CORNERS}
       <div class="project__media">
         ${ribbon}
@@ -253,7 +265,7 @@ function renderProjects() {
   }
 
   grid.innerHTML = PROJECTS
-    .map((p, i) => projectCard(p, i, false))
+    .map((p, i) => projectCard(p, i))
     .join("");
 }
 

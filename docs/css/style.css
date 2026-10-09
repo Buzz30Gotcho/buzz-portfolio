@@ -769,6 +769,20 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   border-color: var(--border-strong);
   box-shadow: var(--shadow);
 }
+
+/* Projet vedette — grande carte éditoriale sur toute la largeur */
+.project--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  border-color: var(--border-strong);
+}
+.project--featured .project__media { aspect-ratio: auto; height: 100%; min-height: 280px; }
+.project--featured .project__body { padding: clamp(24px, 3vw, 42px); justify-content: center; }
+.project--featured .project__title { font-size: clamp(1.3rem, 2.4vw, 1.75rem); }
+.project--featured .project__desc { font-size: 1rem; max-width: 52ch; }
+.project--featured .project__motif::after { font-size: 5rem; }
+
 .project__media {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -1171,6 +1185,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
   .contact { grid-template-columns: 1fr; }
   .projects { grid-template-columns: 1fr; }
+  .project--featured { grid-template-columns: 1fr; }
+  .project--featured .project__media { min-height: 200px; }
   .hero__vertical, .hero__frame-no { display: none; }
 }
 
@@ -1207,6 +1223,15 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .hero > .corner { display: none; }
   .section__rule { display: none; }
 }
+
+/* ============================================================
+   Hero épuré — fond allégé (grille / lignes de vitesse / trame retirées)
+   On garde juste la texture discrète du body + un halo très léger.
+   ============================================================ */
+.hero__grid,
+.hero__speedlines,
+.hero__halftone { display: none; }
+.hero__glow { opacity: 0.55; }
 
 /* ============================================================
    Reduced motion
