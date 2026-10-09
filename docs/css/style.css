@@ -1,32 +1,34 @@
 /* ============================================================
    BUZZ — Full-Stack Developer Portfolio
-   Theme: dark + deep green (no neon)
+   Theme: light (white) + deep green — subtle manga / football / AI
    ============================================================ */
 
 :root {
-  /* Palette */
-  --bg:            #06100B;
-  --surface:       #0B1C12;
-  --primary:       #123D23;
-  --accent:        #1B5E34;
-  --text:          #E8F0EA;
-  --text-soft:     #9AA89F;
+  /* Palette (principalement blanc + vert foncé) */
+  --bg:            #FFFFFF;
+  --surface:       #F7F8F7;
+  --surface-2:     #E8F1EB;
+  --primary:       #123D2A;
+  --accent:        #1F6B45;
+  --accent-ink:    #15512F;
+  --text:          #252925;
+  --text-soft:     #566A5E;
 
-  /* Derived tones */
-  --surface-2:     #0E2417;
-  --border:        rgba(232, 240, 234, 0.08);
-  --border-strong: rgba(27, 94, 52, 0.45);
-  --accent-soft:   rgba(27, 94, 52, 0.14);
-  --shadow:        0 20px 45px -25px rgba(0, 0, 0, 0.9);
+  /* Derived tones (encre verte sur blanc) */
+  --border:        rgba(18, 61, 42, 0.12);
+  --border-strong: rgba(31, 107, 69, 0.38);
+  --accent-soft:   rgba(31, 107, 69, 0.10);
+  --shadow:        0 22px 48px -30px rgba(18, 61, 42, 0.45);
+  --shadow-soft:   0 10px 30px -22px rgba(18, 61, 42, 0.35);
 
   /* Type */
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body:    "Inter", system-ui, -apple-system, sans-serif;
 
   /* Manga ink line */
-  --ink:          rgba(232, 240, 234, 0.22);
-  --ink-strong:   rgba(232, 240, 234, 0.4);
-  --halftone:     rgba(27, 94, 52, 0.5);
+  --ink:          rgba(18, 61, 42, 0.18);
+  --ink-strong:   rgba(18, 61, 42, 0.42);
+  --halftone:     rgba(31, 107, 69, 0.45);
 
   /* Layout */
   --container: 1120px;
@@ -53,7 +55,7 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg);
   background-image:
-    radial-gradient(rgba(27, 94, 52, 0.05) 0.5px, transparent 0.6px);
+    radial-gradient(rgba(18, 61, 42, 0.045) 0.5px, transparent 0.6px);
   background-size: 4px 4px;
   color: var(--text);
   line-height: 1.6;
@@ -82,7 +84,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   top: -60px;
   transform: translateX(-50%);
   background: var(--accent);
-  color: var(--text);
+  color: #fff;
   padding: 10px 18px;
   border-radius: 0 0 10px 10px;
   z-index: 200;
@@ -96,8 +98,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   inset: 0;
   z-index: 9000;
   pointer-events: none;
-  opacity: 0.055;
-  mix-blend-mode: soft-light;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
@@ -144,6 +146,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.1;
+  color: var(--primary);
 }
 .section__rule {
   flex: 1;
@@ -194,18 +197,18 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .btn--primary {
   background: var(--accent);
-  color: var(--text);
-  box-shadow: 0 10px 30px -12px rgba(27, 94, 52, 0.7);
+  color: #fff;
+  box-shadow: 0 12px 28px -14px rgba(18, 61, 42, 0.8);
 }
 .btn--primary:hover {
-  background: #227544;
+  background: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px -12px rgba(27, 94, 52, 0.85);
+  box-shadow: 0 18px 34px -14px rgba(18, 61, 42, 0.9);
 }
 .btn--ghost {
   border-color: var(--border-strong);
-  color: var(--text);
-  background: rgba(27, 94, 52, 0.06);
+  color: var(--primary);
+  background: #fff;
 }
 .btn--ghost:hover {
   background: var(--accent-soft);
@@ -225,7 +228,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  background: rgba(6, 16, 11, 0.82);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--border);
@@ -243,6 +246,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.04em;
+  color: var(--primary);
 }
 .nav__logo {
   color: var(--accent);
@@ -273,8 +277,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   transform-origin: left;
   transition: transform .3s var(--ease);
 }
-.nav__link:hover { color: var(--text); }
-.nav__link.is-active { color: var(--text); }
+.nav__link:hover { color: var(--primary); }
+.nav__link.is-active { color: var(--primary); }
 .nav__link.is-active::after { transform: scaleX(1); }
 
 .nav__toggle {
@@ -292,7 +296,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   width: 20px;
   height: 2px;
   margin-inline: auto;
-  background: var(--text);
+  background: var(--primary);
   border-radius: 2px;
   transition: transform .3s var(--ease), opacity .2s var(--ease);
 }
@@ -307,7 +311,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 82vh;
+  min-height: 88vh;
   padding-block: clamp(88px, 9vh, 104px) clamp(40px, 5vh, 64px);
   overflow: hidden;
 }
@@ -315,8 +319,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(27, 94, 52, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 94, 52, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(18, 61, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 61, 42, 0.05) 1px, transparent 1px);
   background-size: 46px 46px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
@@ -328,10 +332,10 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   z-index: 1;
   pointer-events: none;
   background: repeating-conic-gradient(from 0deg at 30% 44%,
-    rgba(27, 94, 52, 0.15) 0deg 0.32deg, transparent 0.32deg 2.6deg);
+    rgba(31, 107, 69, 0.10) 0deg 0.32deg, transparent 0.32deg 2.6deg);
   -webkit-mask-image: radial-gradient(58% 58% at 30% 44%, transparent 30%, #000 72%);
           mask-image: radial-gradient(58% 58% at 30% 44%, transparent 30%, #000 72%);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 .hero__glow {
   position: absolute;
@@ -342,7 +346,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   max-width: 720px;
   max-height: 720px;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(27, 94, 52, 0.22), transparent 62%);
+  background: radial-gradient(circle, rgba(31, 107, 69, 0.10), transparent 62%);
   filter: blur(20px);
   pointer-events: none;
 }
@@ -357,13 +361,13 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .hero__intro { max-width: 620px; }
 
-/* Compact "who I am" facts, merged from the old About section */
+/* Compact "who I am" facts */
 .hero__facts {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 32px;
-  margin-top: 22px;
-  padding-top: 20px;
+  gap: 14px 30px;
+  margin-top: 24px;
+  padding-top: 22px;
   border-top: 1px solid var(--border);
 }
 .hero__facts li {
@@ -371,8 +375,9 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   flex-direction: column;
   gap: 3px;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
+  color: var(--primary);
 }
 .hero__facts span {
   font-family: var(--font-body);
@@ -386,10 +391,10 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 /* Passions panel shown beside the intro (manga "character sheet") */
 .hero__side {
   position: relative;
-  background: var(--surface);
+  background: #fff;
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
-  padding: clamp(22px, 2.4vw, 32px);
+  padding: clamp(22px, 2.4vw, 30px);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -404,10 +409,10 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   background-size: 10px 10px;
   -webkit-mask-image: radial-gradient(circle at 70% 30%, #000, transparent 70%);
           mask-image: radial-gradient(circle at 70% 30%, #000, transparent 70%);
-  opacity: 0.4;
+  opacity: 0.5;
   pointer-events: none;
 }
-/* "PROFIL" label — horizontal chip, fully inside the panel (no clipping) */
+/* "STACK" label — horizontal chip, fully inside the panel */
 .hero__side .panel__tag {
   writing-mode: horizontal-tb;
   top: 16px;
@@ -418,7 +423,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.18em;
-  color: var(--bg);
+  color: #fff;
   background: var(--accent);
 }
 .hero__side .corner--tr { display: none; }
@@ -442,25 +447,98 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .hero__side-title {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   font-weight: 600;
   line-height: 1.05;
+  color: var(--primary);
+}
+
+/* ---------- Signature : full-stack data flow ---------- */
+.stack {
+  display: grid;
+  gap: 0;
+  position: relative;
+  margin-bottom: 22px;
+}
+.stack__node {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 15px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  position: relative;
+  z-index: 2;
+  transition: transform .25s var(--ease), border-color .25s var(--ease),
+              background .25s var(--ease), box-shadow .25s var(--ease);
+}
+.stack__node:hover {
+  transform: translateX(4px);
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+.stack__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.stack__icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.stack__text { display: flex; flex-direction: column; gap: 1px; }
+.stack__label { font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: var(--primary); line-height: 1.15; }
+.stack__meta { font-size: 0.74rem; color: var(--text-soft); }
+/* connector between nodes = a "pass trajectory" (dotted) carrying a data packet */
+.stack__link {
+  position: relative;
+  height: 20px;
+  margin-left: 33px;
+  width: 2px;
+  background-image: linear-gradient(var(--border-strong) 48%, transparent 0);
+  background-size: 2px 7px;
+  background-repeat: repeat-y;
+  z-index: 1;
+}
+.stack__link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  animation: packet 3.4s var(--ease) infinite;
+}
+.stack__link:nth-of-type(4)::after { animation-delay: .35s; }
+.stack__link:nth-of-type(6)::after { animation-delay: .7s; }
+@keyframes packet {
+  0%        { transform: translateY(-2px); opacity: 0; }
+  12%, 60%  { opacity: 1; }
+  100%      { transform: translateY(20px); opacity: 0; }
 }
 
 .passions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 11px;
   position: relative;
 }
 .passion {
   display: flex;
   align-items: center;
   gap: 11px;
-  padding: 14px 14px;
+  padding: 13px 13px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--surface-2);
+  background: var(--surface);
   transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
 }
 .passion:hover {
@@ -471,19 +549,20 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .passion__icon {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
   border-radius: 10px;
   background: var(--accent-soft);
   color: var(--accent);
 }
-.passion__icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.passion__icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .passion__label {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.2;
+  color: var(--primary);
 }
 
 .hero__eyebrow {
@@ -492,11 +571,12 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   align-items: center;
   gap: 9px;
   font-size: 0.85rem;
-  color: var(--text-soft);
+  font-weight: 500;
+  color: var(--primary);
   padding: 8px 16px;
   border: 1px solid var(--border-strong);
   border-radius: 16px;
-  background: var(--surface);
+  background: #fff;
   margin-bottom: 30px;
 }
 /* Manga speech-bubble tail */
@@ -507,7 +587,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   bottom: -7px;
   width: 13px;
   height: 13px;
-  background: var(--surface);
+  background: #fff;
   border-right: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border-strong);
   transform: rotate(45deg);
@@ -517,7 +597,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(27, 94, 52, 0.18);
+  box-shadow: 0 0 0 4px rgba(31, 107, 69, 0.16);
 }
 
 .hero__title-wrap {
@@ -533,12 +613,11 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   line-height: 0.92;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--text);
-  /* Ombre décalée façon "sticker" manga + contour à l'encre */
-  -webkit-text-stroke: 2px #06100B;
+  color: var(--primary);
+  /* Ombre décalée façon "sticker" manga, en vert */
   text-shadow:
     3px 3px 0 var(--accent),
-    6px 6px 0 rgba(6, 16, 11, 0.9);
+    6px 6px 0 rgba(18, 61, 42, 0.14);
   /* Léger penché dynamique */
   transform: rotate(-3deg) skewX(-5deg);
   transform-origin: left center;
@@ -548,7 +627,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   display: block;
   width: min(340px, 78%);
   height: 20px;
-  margin-top: -2px;
+  margin-top: 2px;
   overflow: visible;
 }
 .hero__brush path {
@@ -569,14 +648,14 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .hero__role {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 3vw, 1.5rem);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--accent);
-  margin-top: 20px;
+  margin-top: 22px;
   letter-spacing: 0.01em;
 }
 .hero__tagline {
   margin-top: 14px;
-  max-width: 48ch;
+  max-width: 50ch;
   color: var(--text-soft);
   font-size: clamp(1rem, 1.6vw, 1.1rem);
 }
@@ -585,7 +664,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 24px;
+  margin-top: 26px;
 }
 .hero__socials {
   display: flex;
@@ -599,14 +678,14 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   height: 44px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(11, 28, 18, 0.5);
+  background: #fff;
   color: var(--text-soft);
   transition: color .25s var(--ease), border-color .25s var(--ease),
               transform .25s var(--ease), background .25s var(--ease);
 }
 .social svg { width: 20px; height: 20px; fill: currentColor; }
 .social:hover {
-  color: var(--text);
+  color: var(--accent);
   border-color: var(--accent);
   background: var(--accent-soft);
   transform: translateY(-3px);
@@ -621,8 +700,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   gap: 22px;
 }
 .skill-cat {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   padding: 26px 24px;
   transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
@@ -649,22 +728,23 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   flex-shrink: 0;
 }
 .skill-cat__icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-.skill-cat__title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+.skill-cat__title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--primary); }
 
 .skill-tags { display: flex; flex-wrap: wrap; gap: 9px; }
 .skill-tag {
   font-size: 0.85rem;
   padding: 7px 13px;
   border-radius: 8px;
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text-soft);
-  transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+  transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
 }
 .skill-tag:hover {
-  color: var(--text);
+  color: var(--accent-ink);
   border-color: var(--accent);
   background: var(--accent-soft);
+  transform: translateY(-2px);
 }
 
 /* ============================================================
@@ -678,7 +758,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .project {
   display: flex;
   flex-direction: column;
-  background: var(--surface);
+  background: #fff;
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   overflow: hidden;
@@ -704,9 +784,9 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--text);
+  color: var(--primary);
   padding: 3px 8px;
-  background: rgba(6, 16, 11, 0.72);
+  background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border-strong);
   border-radius: 4px;
   backdrop-filter: blur(4px);
@@ -720,16 +800,16 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--bg);
+  color: #fff;
   padding: 5px 11px;
   background: var(--accent);
   border-radius: 4px;
-  box-shadow: 0 6px 18px -8px rgba(27, 94, 52, 0.9);
+  box-shadow: 0 6px 18px -8px rgba(18, 61, 42, 0.9);
 }
 .project__kicker {
   font-family: var(--font-display);
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.14em;
   color: var(--accent);
   margin-bottom: 10px;
@@ -750,8 +830,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(27, 94, 52, 0.10) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 94, 52, 0.10) 1px, transparent 1px);
+    linear-gradient(rgba(31, 107, 69, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 107, 69, 0.12) 1px, transparent 1px);
   background-size: 30px 30px;
   transition: transform .5s var(--ease);
 }
@@ -760,7 +840,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   position: absolute;
   inset: 0;
   background: repeating-conic-gradient(from 0deg at 80% 118%,
-    rgba(27, 94, 52, 0.18) 0deg 0.4deg, transparent 0.4deg 3deg);
+    rgba(31, 107, 69, 0.16) 0deg 0.4deg, transparent 0.4deg 3deg);
   -webkit-mask-image: radial-gradient(72% 92% at 80% 118%, #000 18%, transparent 70%);
           mask-image: radial-gradient(72% 92% at 80% 118%, #000 18%, transparent 70%);
   opacity: 0.6;
@@ -774,14 +854,14 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 3.2rem;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: rgba(232, 240, 234, 0.06);
+  color: rgba(18, 61, 42, 0.08);
 }
 .project:hover .project__motif { transform: scale(1.04); }
 .project__media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 82%, rgba(6, 16, 11, 0.28));
+  background: linear-gradient(180deg, transparent 82%, rgba(18, 61, 42, 0.12));
   pointer-events: none;
 }
 .project__body {
@@ -795,6 +875,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 8px;
+  color: var(--primary);
 }
 .project__desc { color: var(--text-soft); font-size: 0.94rem; margin-bottom: 16px; }
 .project__tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
@@ -804,7 +885,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   letter-spacing: 0.03em;
   padding: 4px 10px;
   border-radius: 6px;
-  color: var(--accent);
+  color: var(--accent-ink);
   background: var(--accent-soft);
 }
 .project__actions {
@@ -827,8 +908,9 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   transition: color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
 }
 .project__link svg { width: 16px; height: 16px; fill: currentColor; }
-.project__link:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
-.project__link--primary { color: var(--text); border-color: var(--border-strong); }
+.project__link:hover { color: var(--accent-ink); border-color: var(--accent); background: var(--accent-soft); }
+.project__link--primary { color: #fff; background: var(--accent); border-color: var(--accent); }
+.project__link--primary:hover { color: #fff; background: var(--primary); border-color: var(--primary); }
 
 /* ============================================================
    Contact
@@ -844,6 +926,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 600;
   margin-bottom: 12px;
+  color: var(--primary);
 }
 .contact__intro > p { color: var(--text-soft); max-width: 44ch; }
 .contact__links { display: grid; gap: 12px; }
@@ -854,10 +937,10 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--surface);
-  transition: border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease);
+  background: #fff;
+  transition: border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
 }
-.contact__link:hover { border-color: var(--accent); transform: translateX(4px); background: var(--surface-2); }
+.contact__link:hover { border-color: var(--accent); transform: translateX(4px); background: var(--surface); box-shadow: var(--shadow-soft); }
 .contact__icon {
   display: grid;
   place-items: center;
@@ -869,7 +952,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   flex-shrink: 0;
 }
 .contact__icon svg { width: 20px; height: 20px; fill: currentColor; }
-.contact__text { display: flex; flex-direction: column; font-family: var(--font-display); font-weight: 500; }
+.contact__text { display: flex; flex-direction: column; font-family: var(--font-display); font-weight: 500; color: var(--primary); }
 .contact__text small { font-size: 0.72rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 400; }
 
 /* ============================================================
@@ -887,7 +970,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   flex-wrap: wrap;
   gap: 14px;
 }
-.footer__brand { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.05em; }
+.footer__brand { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.05em; color: var(--primary); }
 .footer__brand span { color: var(--text-soft); font-weight: 400; letter-spacing: 0; }
 .footer__copy { color: var(--text-soft); font-size: 0.88rem; }
 .footer__socials { display: flex; gap: 18px; }
@@ -944,7 +1027,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.22em;
-  color: var(--bg);
+  color: #fff;
   background: var(--accent);
   padding: 8px 3px;
   border-radius: 3px;
@@ -960,7 +1043,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   height: 1px;
   background:
     repeating-linear-gradient(90deg, var(--border) 0 10px, transparent 10px 20px);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .hero + .section::before,
 .hero + .section::after { display: none; }
@@ -989,7 +1072,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   background-size: 11px 11px;
   -webkit-mask-image: radial-gradient(circle at 70% 70%, #000, transparent 68%);
   mask-image: radial-gradient(circle at 70% 70%, #000, transparent 68%);
-  opacity: 0.5;
+  opacity: 0.45;
   pointer-events: none;
   z-index: 1;
 }
@@ -1004,7 +1087,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-weight: 500;
   letter-spacing: 0.42em;
   color: var(--text-soft);
-  opacity: 0.5;
+  opacity: 0.55;
   z-index: 2;
 }
 .hero__frame-no {
@@ -1016,7 +1099,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-weight: 500;
   letter-spacing: 0.2em;
   color: var(--accent);
-  opacity: 0.75;
+  opacity: 0.8;
   z-index: 2;
 }
 .hero > .corner { opacity: 0.4; width: 22px; height: 22px; }
@@ -1028,7 +1111,6 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .hero .corner--br { bottom: 40px; right: clamp(20px, 5vw, 56px); }
 
 /* Skill card number annotation */
-.skill-cat { border-width: 1.5px; border-color: var(--ink); }
 .skill-cat__no {
   position: absolute;
   top: 16px;
@@ -1040,6 +1122,26 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   color: var(--text-soft);
   opacity: 0.55;
 }
+
+/* ============================================================
+   Pointer glow — subtle signature micro-interaction on panels
+   (added by JS only on fine pointers; off on touch & reduced motion)
+   ============================================================ */
+.panel.has-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(31, 107, 69, 0.10), transparent 60%);
+  pointer-events: none;
+}
+.panel.has-glow:hover::after { opacity: 1; }
+.project.panel.has-glow > *,
+.skill-cat.panel.has-glow > * { position: relative; z-index: 1; }
 
 /* ============================================================
    Scroll reveal
@@ -1078,7 +1180,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .nav__menu {
     position: fixed;
     inset: 68px 0 auto 0;
-    background: rgba(6, 16, 11, 0.97);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
@@ -1117,4 +1219,5 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .stack__link::after { display: none; }
 }

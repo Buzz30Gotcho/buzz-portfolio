@@ -58,13 +58,22 @@ const PROJECTS = [
   },
 ];
 
+/* Flux full-stack mis en avant dans le hero (signature visuelle).
+   Chaque couche reprend des technos réellement présentes dans SKILLS. */
+const STACK = [
+  { icon: "layout", label: "Front-end", meta: "React · Vue · TypeScript" },
+  { icon: "api", label: "API", meta: "REST · JWT" },
+  { icon: "server", label: "Back-end", meta: "Node · Java · PHP" },
+  { icon: "database", label: "Base de données", meta: "PostgreSQL · Supabase" },
+];
+
 /* Passions / centres d'intérêt affichés dans le hero.
    Modifiez librement label + icon (voir la liste ICONS plus bas). */
 const PASSIONS = [
   { icon: "manga", label: "Manga & culture jap." },
-  { icon: "game", label: "Jeux vidéo" },
+  { icon: "sport", label: "Football" },
+  { icon: "ai", label: "Intelligence artificielle" },
   { icon: "design", label: "Design & UI" },
-  { icon: "tech", label: "Nouvelles technos" },
 ];
 
 /* Inline SVG icons (stroke-based, no neon) — catégories & passions. */
@@ -85,6 +94,10 @@ const ICONS = {
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19l7-7-4-4-7 7v4z"/><path d="M15 8l1.5-1.5a2 2 0 0 0-3-3L12 5"/><path d="M4 20h6"/></svg>',
   tech:
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
+  api:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8 3 12l4 4M17 8l4 4-4 4M14 4l-4 16"/></svg>',
+  ai:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M9 1.5v2M15 1.5v2M9 20.5v2M15 20.5v2M1.5 9h2M1.5 15h2M20.5 9h2M20.5 15h2"/><circle cx="12" cy="12" r="2"/></svg>',
   music:
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
   film:
@@ -188,6 +201,30 @@ function projectCard(p, i, flag) {
         </div>
       </div>
     </article>`;
+}
+
+/* Hero side panel = flux full-stack (signature). Les noeuds sont reliés
+   par des connecteurs ".stack__link" qui portent un "paquet de données"
+   animé (voir CSS). Alterne noeud / lien / noeud ... */
+function renderStack() {
+  const grid = document.getElementById("stack");
+  if (!grid) return;
+
+  grid.innerHTML = STACK.map((layer, i) => {
+    const node = `
+    <div class="stack__node">
+      <span class="stack__icon">${ICONS[layer.icon] || ""}</span>
+      <span class="stack__text">
+        <span class="stack__label">${escapeHtml(layer.label)}</span>
+        <span class="stack__meta">${escapeHtml(layer.meta)}</span>
+      </span>
+    </div>`;
+    const link =
+      i < STACK.length - 1
+        ? '<div class="stack__link" aria-hidden="true"></div>'
+        : "";
+    return node + link;
+  }).join("");
 }
 
 /* Hero side panel = passions / centres d'intérêt. */
@@ -307,15 +344,47 @@ function initReveal() {
 }
 
 /* ------------------------------------------------------------
-   5. INIT
+   5. POINTER GLOW
+   Micro-interaction signature : un halo vert discret suit le curseur
+   sur les cartes. Désactivé au tactile et si l'utilisateur préfère
+   réduire les animations (accessibilité).
+   ------------------------------------------------------------ */
+
+function initPanelGlow() {
+  const finePointer =
+    window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+  const reduceMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!finePointer || reduceMotion) return;
+
+  const cards = document.querySelectorAll(".project.panel, .skill-cat.panel");
+  cards.forEach((card) => {
+    card.classList.add("has-glow");
+    card.addEventListener(
+      "pointermove",
+      (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      },
+      { passive: true }
+    );
+  });
+}
+
+/* ------------------------------------------------------------
+   6. INIT
    ------------------------------------------------------------ */
 
 document.addEventListener("DOMContentLoaded", () => {
   renderSkills();
+  renderStack();
   renderPassions();
   renderProjects();
   initNav();
   initReveal(); // après le contenu dynamique pour observer les .reveal injectés
+  initPanelGlow(); // après l'injection des cartes
 
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
