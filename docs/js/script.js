@@ -1,5 +1,5 @@
 /* ============================================================
-   BUZZ — Portfolio interactions & content
+   Frédéric Makha Sar — Portfolio interactions & content
    Vanilla JS, no dependencies.
    ============================================================ */
 
