@@ -52,13 +52,14 @@
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
   <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
   <!-- ===== Navbar ===== -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#home" class="nav__brand" aria-label="Frédéric Makha Sar — accueil">
         <span class="nav__logo">&lt;/&gt;</span>
-        <span class="nav__name">Frédéric&nbsp;Sar</span>
+        <span class="nav__name">Frédéric&nbsp;Makha&nbsp;Sar</span>
       </a>
 
       <nav class="nav__menu" id="nav-menu" aria-label="Navigation principale">
@@ -160,6 +161,13 @@
       </div>
 
     </section>
+
+    <!-- ===== Bandeau défilant (stack) ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <!-- Items injectés depuis js/script.js -->
+      </div>
+    </div>
 
     <!-- ===== Projets ===== -->
     <section class="section" id="projects">

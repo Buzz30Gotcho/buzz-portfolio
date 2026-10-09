@@ -78,6 +78,13 @@ const STACK = [
   { icon: "database", label: "Base de données", meta: "PostgreSQL · Supabase" },
 ];
 
+/* Bandeau défilant sous le hero — technos réellement maîtrisées. */
+const MARQUEE = [
+  "React", "Vue.js", "Angular", "TypeScript", "Node.js", "Express",
+  "Spring Boot", "Java", "Python", "Flask", "PostgreSQL", "Supabase",
+  "Docker", "Git", "CI/CD",
+];
+
 /* Passions / centres d'intérêt affichés dans le hero.
    Modifiez librement label + icon (voir la liste ICONS plus bas). */
 const PASSIONS = [
@@ -239,6 +246,21 @@ function renderStack() {
   }).join("");
 }
 
+/* Bandeau défilant : on duplique la séquence pour une boucle sans couture
+   (l'animation CSS translate de 0 à -50%). */
+function renderMarquee() {
+  const track = document.getElementById("marquee");
+  if (!track) return;
+
+  const seq = MARQUEE.map(
+    (t) =>
+      `<span class="marquee__item">${escapeHtml(t)}</span>` +
+      '<span class="marquee__item marquee__item--dot">&#9670;</span>'
+  ).join("");
+
+  track.innerHTML = seq + seq;
+}
+
 /* Hero side panel = passions / centres d'intérêt. */
 function renderPassions() {
   const grid = document.getElementById("passions-grid");
@@ -386,17 +408,40 @@ function initPanelGlow() {
 }
 
 /* ------------------------------------------------------------
-   6. INIT
+   6. SCROLL PROGRESS
+   Barre de progression de lecture en haut de page.
+   ------------------------------------------------------------ */
+
+function initProgress() {
+  const bar = document.getElementById("progress");
+  if (!bar) return;
+
+  const update = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + "%";
+  };
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
+}
+
+/* ------------------------------------------------------------
+   7. INIT
    ------------------------------------------------------------ */
 
 document.addEventListener("DOMContentLoaded", () => {
   renderSkills();
   renderStack();
+  renderMarquee();
   renderPassions();
   renderProjects();
   initNav();
   initReveal(); // après le contenu dynamique pour observer les .reveal injectés
   initPanelGlow(); // après l'injection des cartes
+  initProgress();
 
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();

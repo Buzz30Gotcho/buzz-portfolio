@@ -104,6 +104,52 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   background-size: 160px 160px;
 }
 
+/* ---------- Scroll progress bar ---------- */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 300;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  transition: width .1s linear;
+}
+
+/* ---------- Marquee band (stack défilante) ---------- */
+.marquee {
+  overflow: hidden;
+  background: var(--primary);
+  border-block: 1px solid var(--primary);
+  padding-block: 14px;
+}
+.marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__item {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  padding-inline: 22px;
+}
+.marquee__item--dot {
+  color: rgba(255, 255, 255, 0.45);
+  padding-inline: 0;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* ---------- Layout helpers ---------- */
 .container {
   width: 100%;
@@ -253,7 +299,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   font-size: 1.05rem;
   font-weight: 700;
 }
-.nav__name { font-size: 1.15rem; }
+.nav__name { font-size: 1.05rem; white-space: nowrap; }
 
 .nav__list { display: flex; gap: 6px; }
 .nav__link {
@@ -311,8 +357,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 88vh;
-  padding-block: clamp(88px, 9vh, 104px) clamp(40px, 5vh, 64px);
+  min-height: auto;
+  padding-block: clamp(96px, 11vh, 120px) clamp(32px, 4vh, 52px);
   overflow: hidden;
 }
 .hero__grid {
@@ -1170,6 +1216,14 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .hero__inner .reveal:nth-child(5) { transition-delay: .33s; }
 .hero__inner .reveal:nth-child(6) { transition-delay: .40s; }
 
+/* stagger cards (projets / compétences) à l'apparition */
+.projects .reveal:nth-child(2) { transition-delay: .08s; }
+.projects .reveal:nth-child(3) { transition-delay: .16s; }
+.skills .reveal:nth-child(1) { transition-delay: .04s; }
+.skills .reveal:nth-child(2) { transition-delay: .12s; }
+.skills .reveal:nth-child(3) { transition-delay: .20s; }
+.skills .reveal:nth-child(4) { transition-delay: .28s; }
+
 /* ============================================================
    Responsive
    ============================================================ */
@@ -1240,4 +1294,6 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   }
   .reveal { opacity: 1; transform: none; }
   .stack__link::after { display: none; }
+  .marquee__track { animation: none; transform: none; }
+  .progress { transition: none; }
 }
