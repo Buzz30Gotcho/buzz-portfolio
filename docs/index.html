@@ -80,16 +80,35 @@
   <main id="main">
     <!-- ===== Hero ===== -->
     <section class="hero" id="home">
-      <div class="hero__grid" aria-hidden="true"></div>
-      <div class="hero__speedlines" aria-hidden="true"></div>
       <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__halftone" aria-hidden="true"></div>
-      <span class="hero__vertical" aria-hidden="true">PORTFOLIO</span>
-      <span class="hero__frame-no" aria-hidden="true">N°00</span>
-      <span class="corner corner--tl" aria-hidden="true"></span>
-      <span class="corner corner--tr" aria-hidden="true"></span>
-      <span class="corner corner--bl" aria-hidden="true"></span>
-      <span class="corner corner--br" aria-hidden="true"></span>
+      <!-- Réseau de neurones animé — ambiance tech / IA, discret -->
+      <div class="hero__ai" aria-hidden="true">
+        <svg viewBox="0 0 480 360" preserveAspectRatio="xMidYMid slice">
+          <g class="ai-edges">
+            <line x1="70" y1="90" x2="230" y2="60"/>
+            <line x1="70" y1="90" x2="230" y2="150"/>
+            <line x1="70" y1="180" x2="230" y2="150"/>
+            <line x1="70" y1="180" x2="230" y2="240"/>
+            <line x1="70" y1="270" x2="230" y2="240"/>
+            <line x1="70" y1="270" x2="230" y2="320"/>
+            <line x1="230" y1="60" x2="390" y2="120"/>
+            <line x1="230" y1="150" x2="390" y2="120"/>
+            <line x1="230" y1="240" x2="390" y2="240"/>
+            <line x1="230" y1="320" x2="390" y2="240"/>
+          </g>
+          <g class="ai-nodes">
+            <circle cx="70" cy="90" r="5"/>
+            <circle cx="70" cy="180" r="5"/>
+            <circle cx="70" cy="270" r="5"/>
+            <circle cx="230" cy="60" r="5"/>
+            <circle cx="230" cy="150" r="5"/>
+            <circle cx="230" cy="240" r="5"/>
+            <circle cx="230" cy="320" r="5"/>
+            <circle cx="390" cy="120" r="5"/>
+            <circle cx="390" cy="240" r="5"/>
+          </g>
+        </svg>
+      </div>
 
       <div class="container hero__inner">
         <div class="hero__intro">
@@ -98,14 +117,13 @@
             En recherche d'alternance · janvier 2027
           </p>
 
+          <p class="hero__name reveal">Frédéric Makha Sar</p>
+
           <div class="hero__title-wrap reveal">
-            <h1 class="hero__title">Frédéric<br />Makha Sar</h1>
-            <svg class="hero__brush" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M4 15 C 60 6, 120 20, 175 12 S 280 6, 316 14" />
-            </svg>
+            <h1 class="hero__title">Développeur<br />Full-Stack</h1>
+            <span class="hero__accent" aria-hidden="true"></span>
           </div>
 
-          <p class="hero__role reveal">Développeur Full-Stack</p>
           <p class="hero__tagline reveal">
             J'aime développer des applications web et mobiles de bout en bout,
             de l'interface à l'API, résoudre des problèmes concrets et transformer

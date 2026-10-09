@@ -88,10 +88,10 @@ const MARQUEE = [
 /* Passions / centres d'intérêt affichés dans le hero.
    Modifiez librement label + icon (voir la liste ICONS plus bas). */
 const PASSIONS = [
-  { icon: "manga", label: "Manga & culture jap." },
-  { icon: "sport", label: "Football" },
   { icon: "ai", label: "Intelligence artificielle" },
-  { icon: "design", label: "Design & UI" },
+  { icon: "tech", label: "Veille technologique" },
+  { icon: "rocket", label: "Hackathons" },
+  { icon: "sport", label: "Football" },
 ];
 
 /* Inline SVG icons (stroke-based, no neon) — catégories & passions. */
@@ -116,6 +116,8 @@ const ICONS = {
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8 3 12l4 4M17 8l4 4-4 4M14 4l-4 16"/></svg>',
   ai:
     '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M9 1.5v2M15 1.5v2M9 20.5v2M15 20.5v2M1.5 9h2M1.5 15h2M20.5 9h2M20.5 15h2"/><circle cx="12" cy="12" r="2"/></svg>',
+  rocket:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15c-1.5 1-2 4-2 4s3-.5 4-2a2.1 2.1 0 0 0-2-2z"/><path d="M12.5 15.5 9 12c1-4 4-7.5 10-8.5-1 6-4.5 9.5-8.5 10.5z"/><path d="M9 12 5.5 13M12.5 15.5 11.5 19"/><circle cx="14.5" cy="9.5" r="1.2"/></svg>',
   music:
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
   film:
