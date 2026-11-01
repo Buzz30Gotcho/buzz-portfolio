@@ -37,6 +37,17 @@ const SKILLS = [
    Mettez `demo` à null (ou supprimez-le) pour masquer le bouton Démo. */
 const PROJECTS = [
   {
+    name: "Plateforme de recherche d'alternance",
+    context: "Projet perso · Full-stack (solo)",
+    description:
+      "Plateforme full-stack qui regroupe les offres de stage et d'alternance adaptées à ton profil, suit tes candidatures et t'envoie des rappels de relance. Elle intègre une aide à la candidature par IA (génération de CV) et une authentification sécurisée avec vérification par e-mail.",
+    tags: ["Angular", "NestJS", "Prisma", "PostgreSQL", "TypeScript", "Docker"],
+    image: null,
+    github: null,
+    demo: null,
+    featured: true,
+  },
+  {
     name: "BudgetFlow — Gestion de budget",
     context: "Projet perso · Full-stack",
     description:
@@ -45,7 +56,6 @@ const PROJECTS = [
     image: null,
     github: "https://github.com/Buzz30Gotcho/budgetflow",
     demo: null,
-    featured: true,
   },
   {
     name: "SAJA — Livraison de luxe",
@@ -186,6 +196,18 @@ function projectCard(p, i) {
       )}" target="_blank" rel="noopener noreferrer">${externalIcon} Voir le projet</a>`
     : "";
 
+  const githubBtn = p.github
+    ? `<a class="project__link" href="${escapeHtml(
+        p.github
+      )}" target="_blank" rel="noopener noreferrer">${githubIcon} GitHub</a>`
+    : "";
+
+  // Si aucune action (ni GitHub ni démo), on masque la barre de boutons.
+  const actions =
+    githubBtn || demoBtn
+      ? `<div class="project__actions">${githubBtn}${demoBtn}</div>`
+      : "";
+
   const ribbon = featured
     ? '<span class="project__flag" aria-hidden="true">À LA UNE</span>'
     : "";
@@ -214,12 +236,7 @@ function projectCard(p, i) {
         <h3 class="project__title">${escapeHtml(p.name)}</h3>
         <p class="project__desc">${escapeHtml(p.description)}</p>
         <div class="project__tags">${tags}</div>
-        <div class="project__actions">
-          <a class="project__link" href="${escapeHtml(
-            p.github
-          )}" target="_blank" rel="noopener noreferrer">${githubIcon} GitHub</a>
-          ${demoBtn}
-        </div>
+        ${actions}
       </div>
     </article>`;
 }
