@@ -37,13 +37,13 @@ const SKILLS = [
    Mettez `demo` à null (ou supprimez-le) pour masquer le bouton Démo. */
 const PROJECTS = [
   {
-    name: "Plateforme de recherche d'alternance",
+    name: "Jobzz — Recherche d'alternance",
     context: "Projet perso · Full-stack (solo)",
     description:
       "Plateforme full-stack qui regroupe les offres de stage et d'alternance adaptées à ton profil, suit tes candidatures et t'envoie des rappels de relance. Elle intègre une aide à la candidature par IA (génération de CV) et une authentification sécurisée avec vérification par e-mail.",
     tags: ["Angular", "NestJS", "Prisma", "PostgreSQL", "TypeScript", "Docker"],
-    image: null,
-    github: null,
+    image: "assets/images/jobzz.png",
+    github: "https://github.com/Buzz30Gotcho/jobzz-app",
     demo: null,
     featured: true,
   },
