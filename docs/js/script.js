@@ -45,6 +45,7 @@ const PROJECTS = [
     image: "assets/images/jobzz.png",
     github: "https://github.com/Buzz30Gotcho/jobzz-app",
     demo: null,
+    demoSoon: true,
     featured: true,
   },
   {
@@ -181,6 +182,9 @@ const githubIcon =
 const externalIcon =
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H7v10h10v-3h2v5H5V5z"/></svg>';
 
+const clockIcon =
+  '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+
 /* Build one project "case". `i` is the original index (drives numbering).
    `p.featured` met le projet en vedette (grande carte éditoriale + ruban). */
 function projectCard(p, i) {
@@ -202,10 +206,16 @@ function projectCard(p, i) {
       )}" target="_blank" rel="noopener noreferrer">${githubIcon} GitHub</a>`
     : "";
 
-  // Si aucune action (ni GitHub ni démo), on masque la barre de boutons.
+  // Démo pas encore déployée : on l'annonce (badge non cliquable).
+  const soonBtn =
+    !p.demo && p.demoSoon
+      ? `<span class="project__link project__link--soon">${clockIcon} Démo bientôt en ligne</span>`
+      : "";
+
+  // Si aucune action, on masque la barre de boutons.
   const actions =
-    githubBtn || demoBtn
-      ? `<div class="project__actions">${githubBtn}${demoBtn}</div>`
+    githubBtn || demoBtn || soonBtn
+      ? `<div class="project__actions">${githubBtn}${demoBtn}${soonBtn}</div>`
       : "";
 
   const ribbon = featured

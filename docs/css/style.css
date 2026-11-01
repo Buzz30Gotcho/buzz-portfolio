@@ -994,6 +994,15 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .project__link:hover { color: var(--accent-ink); border-color: var(--accent); background: var(--accent-soft); }
 .project__link--primary { color: #fff; background: var(--accent); border-color: var(--accent); }
 .project__link--primary:hover { color: #fff; background: var(--primary); border-color: var(--primary); }
+/* Badge "démo bientôt en ligne" — informatif, non cliquable */
+.project__link--soon {
+  cursor: default;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border-color: var(--border-strong);
+  border-style: dashed;
+}
+.project__link--soon svg { stroke: currentColor; fill: none; }
 
 /* ============================================================
    Contact
