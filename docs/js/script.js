@@ -206,10 +206,10 @@ function projectCard(p, i) {
       )}" target="_blank" rel="noopener noreferrer">${githubIcon} GitHub</a>`
     : "";
 
-  // Démo pas encore déployée : on l'annonce (badge non cliquable).
+  // App/démo pas encore déployée : on l'annonce (badge non cliquable).
   const soonBtn =
     !p.demo && p.demoSoon
-      ? `<span class="project__link project__link--soon">${clockIcon} Démo bientôt en ligne</span>`
+      ? `<span class="project__link project__link--soon">${clockIcon} Bientôt en ligne</span>`
       : "";
 
   // Si aucune action, on masque la barre de boutons.
