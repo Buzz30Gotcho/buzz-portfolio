@@ -9,6 +9,18 @@
   <meta name="author" content="Frédéric Makha Sar" />
   <meta name="theme-color" content="#FFFFFF" />
 
+  <!-- Thème appliqué avant le rendu pour éviter le flash (clair / sombre) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Frédéric Makha Sar — Développeur Full-Stack" />
@@ -65,11 +77,17 @@
       <nav class="nav__menu" id="nav-menu" aria-label="Navigation principale">
         <ul class="nav__list">
           <li><a href="#home" class="nav__link">Accueil</a></li>
+          <li><a href="#about" class="nav__link">À propos</a></li>
           <li><a href="#projects" class="nav__link">Projets</a></li>
           <li><a href="#skills" class="nav__link">Compétences</a></li>
           <li><a href="#contact" class="nav__link">Contact</a></li>
         </ul>
       </nav>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Basculer le thème sombre">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      </button>
 
       <button class="nav__toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
         <span></span><span></span><span></span>
@@ -187,11 +205,73 @@
       </div>
     </div>
 
-    <!-- ===== Projets ===== -->
-    <section class="section" id="projects">
+    <!-- ===== À propos ===== -->
+    <section class="section" id="about">
       <div class="container">
         <header class="section__head reveal">
           <span class="section__index">01</span>
+          <div class="section__heading">
+            <h2 class="section__title">À propos</h2>
+          </div>
+          <span class="section__rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="about">
+          <div class="about__terminal reveal" role="img" aria-label="Carte de présentation : Frédéric Makha Sar, développeur Full-Stack en Master 2, stack Java, React, Spring Boot et Docker, centré sur l'IA et le web, disponible en alternance dès janvier 2027.">
+            <div class="term__bar" aria-hidden="true">
+              <span class="term__dot"></span>
+              <span class="term__dot"></span>
+              <span class="term__dot"></span>
+              <span class="term__file">frederic.js</span>
+            </div>
+<pre class="term__body" aria-hidden="true"><code><span class="tok-kw">const</span> dev = {
+  <span class="tok-key">nom</span>: <span class="tok-str">"Frédéric M. Sar"</span>,
+  <span class="tok-key">role</span>: <span class="tok-str">"Full-Stack"</span>,
+  <span class="tok-key">formation</span>: <span class="tok-str">"Master 2"</span>,
+  <span class="tok-key">stack</span>: [<span class="tok-str">"Java"</span>, <span class="tok-str">"React"</span>],
+  <span class="tok-key">outils</span>: [<span class="tok-str">"Spring"</span>, <span class="tok-str">"Docker"</span>],
+  <span class="tok-key">focus</span>: <span class="tok-str">"IA &amp; web"</span>,
+  <span class="tok-key">alternance</span>: <span class="tok-str">"janv. 2027"</span>,
+  <span class="tok-key">dispo</span>: <span class="tok-bool">true</span>,
+};<span class="term__cursor"></span></code></pre>
+          </div>
+
+          <div class="about__body reveal">
+            <p class="about__lead">
+              Étudiant en <strong>Master 2 développement Full-Stack</strong>,
+              je conçois des applications web et mobiles de bout en bout.
+            </p>
+            <p>
+              De l'interface à l'API jusqu'à la base de données, j'aime
+              comprendre toute la chaîne et transformer une idée en une solution
+              qui fonctionne vraiment. J'ai construit plusieurs projets complets :
+              une application de gestion de budget en Spring Boot &amp; Angular,
+              une plateforme e-commerce en React/Node, et une architecture
+              microservices pour la réservation de billets de cinéma.
+            </p>
+            <p>
+              Je suis curieux des usages de l'intelligence artificielle pour
+              concevoir des applications plus utiles, j'aime participer à des
+              hackathons et faire de la veille technologique. Je recherche une
+              <strong>alternance à partir de janvier 2027</strong> pour mettre
+              tout ça au service d'une vraie équipe.
+            </p>
+
+            <ul class="about__meta">
+              <li><span>Formation</span>Master 2 Full-Stack</li>
+              <li><span>Disponibilité</span>Alternance · janvier 2027</li>
+              <li><span>Basé à</span>France</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projets ===== -->
+    <section class="section section--alt" id="projects">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__index">02</span>
           <div class="section__heading">
             <h2 class="section__title">Projets</h2>
           </div>
@@ -205,10 +285,10 @@
     </section>
 
     <!-- ===== Compétences ===== -->
-    <section class="section section--alt" id="skills">
+    <section class="section" id="skills">
       <div class="container">
         <header class="section__head reveal">
-          <span class="section__index">02</span>
+          <span class="section__index">03</span>
           <div class="section__heading">
             <h2 class="section__title">Compétences</h2>
           </div>
@@ -222,10 +302,10 @@
     </section>
 
     <!-- ===== Contact ===== -->
-    <section class="section" id="contact">
+    <section class="section section--alt" id="contact">
       <div class="container">
         <header class="section__head reveal">
-          <span class="section__index">03</span>
+          <span class="section__index">04</span>
           <div class="section__heading">
             <h2 class="section__title">Contact</h2>
           </div>
@@ -237,9 +317,37 @@
             <h3 class="contact__lead">Travaillons ensemble</h3>
             <p>
               Vous avez un projet, une opportunité ou souhaitez simplement
-              échanger ? N'hésitez pas à me contacter, je vous répondrai
-              avec plaisir.
+              échanger ? Écrivez-moi via le formulaire ou directement sur
+              mes réseaux, je vous répondrai avec plaisir.
             </p>
+
+            <!-- Formulaire connecté à Formspree -->
+            <form
+              class="contact__form"
+              id="contact-form"
+              action="https://formspree.io/f/mbggznrj"
+              method="POST"
+            >
+              <div class="field">
+                <label for="cf-name">Nom</label>
+                <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Votre nom" required />
+              </div>
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="vous@exemple.com" required />
+              </div>
+              <div class="field">
+                <label for="cf-message">Message</label>
+                <textarea id="cf-message" name="message" placeholder="Votre message…" required></textarea>
+              </div>
+              <!-- Piège à robots : laissé vide par les humains -->
+              <div class="field field--hp" aria-hidden="true">
+                <label for="cf-company">Ne pas remplir</label>
+                <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off" />
+              </div>
+              <button type="submit" class="btn btn--primary btn--block">Envoyer le message</button>
+              <p class="contact__status" id="contact-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
 
           <ul class="contact__links reveal">

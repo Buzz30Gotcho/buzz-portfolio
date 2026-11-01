@@ -21,6 +21,13 @@
   --shadow:        0 22px 48px -30px rgba(18, 61, 42, 0.45);
   --shadow-soft:   0 10px 30px -22px rgba(18, 61, 42, 0.35);
 
+  /* Surfaces sémantiques (pilotent le thème clair / sombre) */
+  --card:          #FFFFFF;     /* fond des panels / cartes */
+  --nav-bg:        rgba(255, 255, 255, 0.82);
+  --menu-bg:       rgba(255, 255, 255, 0.97);
+  --chip-bg:       rgba(255, 255, 255, 0.82);
+  --tok-str:       #9A6A12;     /* chaînes de caractères (carte code) */
+
   /* Type */
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body:    "Inter", system-ui, -apple-system, sans-serif;
@@ -254,7 +261,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .btn--ghost {
   border-color: var(--border-strong);
   color: var(--primary);
-  background: #fff;
+  background: var(--card);
 }
 .btn--ghost:hover {
   background: var(--accent-soft);
@@ -274,7 +281,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--nav-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--border);
@@ -437,7 +444,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 /* Passions panel shown beside the intro (manga "character sheet") */
 .hero__side {
   position: relative;
-  background: #fff;
+  background: var(--card);
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   padding: clamp(22px, 2.4vw, 30px);
@@ -522,7 +529,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .stack__node:hover {
   transform: translateX(4px);
   border-color: var(--accent);
-  background: #fff;
+  background: var(--card);
   box-shadow: var(--shadow-soft);
 }
 .stack__icon {
@@ -622,7 +629,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   padding: 8px 16px;
   border: 1px solid var(--border-strong);
   border-radius: 16px;
-  background: #fff;
+  background: var(--card);
   margin-bottom: 30px;
 }
 /* Manga speech-bubble tail */
@@ -633,7 +640,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   bottom: -7px;
   width: 13px;
   height: 13px;
-  background: #fff;
+  background: var(--card);
   border-right: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border-strong);
   transform: rotate(45deg);
@@ -740,7 +747,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   height: 44px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--card);
   color: var(--text-soft);
   transition: color .25s var(--ease), border-color .25s var(--ease),
               transform .25s var(--ease), background .25s var(--ease);
@@ -762,7 +769,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   gap: 22px;
 }
 .skill-cat {
-  background: #fff;
+  background: var(--card);
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   padding: 26px 24px;
@@ -820,7 +827,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .project {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--card);
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   overflow: hidden;
@@ -862,7 +869,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   letter-spacing: 0.08em;
   color: var(--primary);
   padding: 3px 8px;
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--chip-bg);
   border: 1px solid var(--border-strong);
   border-radius: 4px;
   backdrop-filter: blur(4px);
@@ -1013,7 +1020,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--card);
   transition: border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
 }
 .contact__link:hover { border-color: var(--accent); transform: translateX(4px); background: var(--surface); box-shadow: var(--shadow-soft); }
@@ -1266,7 +1273,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .nav__menu {
     position: fixed;
     inset: 68px 0 auto 0;
-    background: rgba(255, 255, 255, 0.97);
+    background: var(--menu-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
@@ -1344,6 +1351,224 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 @keyframes ai-pulse {
   0%, 100% { opacity: 0.35; transform: scale(0.8); }
   50%      { opacity: 0.9;  transform: scale(1.25); }
+}
+
+/* ============================================================
+   Bouton de bascule de thème (clair / sombre)
+   ============================================================ */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-left: 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: color .25s var(--ease), border-color .25s var(--ease),
+              background .25s var(--ease), transform .25s var(--ease);
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+.theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+/* On montre la lune en clair, le soleil en sombre */
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* ============================================================
+   À propos
+   ============================================================ */
+.about {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+/* Carte "terminal / code" façon éditeur — remplace la photo */
+.about__terminal {
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+}
+.term__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.term__dot { width: 11px; height: 11px; border-radius: 50%; }
+.term__dot:nth-child(1) { background: #e06c56; }
+.term__dot:nth-child(2) { background: #e0b84f; }
+.term__dot:nth-child(3) { background: var(--accent); }
+.term__file {
+  margin-left: 8px;
+  font-size: 0.74rem;
+  color: var(--text-soft);
+  letter-spacing: 0.02em;
+}
+.term__body {
+  margin: 0;
+  padding: 18px 18px 20px;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-soft);
+  overflow-x: auto;
+}
+.term__body .tok-kw   { color: var(--accent); }
+.term__body .tok-key  { color: var(--primary); }
+.term__body .tok-str  { color: var(--tok-str); }
+.term__body .tok-bool { color: var(--accent-ink); font-style: italic; }
+.term__cursor {
+  display: inline-block;
+  width: 7px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--accent);
+  animation: term-blink 1.1s steps(1) infinite;
+}
+@keyframes term-blink { 50% { opacity: 0; } }
+.about__body > p { color: var(--text-soft); margin-bottom: 14px; max-width: 58ch; }
+.about__body > p:last-of-type { margin-bottom: 0; }
+.about__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--primary);
+  margin-bottom: 16px !important;
+}
+.about__lead strong { color: var(--accent); font-weight: 600; }
+.about__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.about__meta li {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+.about__meta span {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   Formulaire de contact
+   ============================================================ */
+.contact__form { display: grid; gap: 16px; }
+.field { display: grid; gap: 7px; }
+.field label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+}
+.field input,
+.field textarea {
+  font: inherit;
+  width: 100%;
+  padding: 12px 14px;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+}
+.field textarea { resize: vertical; min-height: 130px; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-soft); opacity: 0.7; }
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+/* Honeypot anti-spam — caché visuellement et aux lecteurs d'écran */
+.field--hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.contact__status {
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-height: 1.2em;
+}
+.contact__status.is-ok  { color: var(--accent); }
+.contact__status.is-err { color: #c0392b; }
+
+/* ============================================================
+   Thème sombre
+   ============================================================ */
+[data-theme="dark"] {
+  --bg:            #0E1512;
+  --surface:       #131E18;
+  --surface-2:     #17261E;
+  --primary:       #EAF3EC;   /* titres / texte fort → clair */
+  --accent:        #4FB07A;   /* vert plus lumineux pour le contraste */
+  --accent-ink:    #8FD9AF;
+  --text:          #D6E0DA;
+  --text-soft:     #93A79B;
+
+  --border:        rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(79, 176, 122, 0.45);
+  --accent-soft:   rgba(79, 176, 122, 0.14);
+  --shadow:        0 24px 50px -30px rgba(0, 0, 0, 0.75);
+  --shadow-soft:   0 12px 30px -22px rgba(0, 0, 0, 0.6);
+
+  --ink:           rgba(255, 255, 255, 0.14);
+  --ink-strong:    rgba(143, 217, 175, 0.45);
+  --halftone:      rgba(79, 176, 122, 0.4);
+
+  --card:          #15221B;
+  --nav-bg:        rgba(14, 21, 18, 0.82);
+  --menu-bg:       rgba(14, 21, 18, 0.97);
+  --chip-bg:       rgba(21, 34, 27, 0.85);
+  --tok-str:       #D8A657;
+
+  color-scheme: dark;
+}
+/* La texture "papier" en multiply noircit tout en sombre → on l'atténue */
+[data-theme="dark"] .grain { mix-blend-mode: screen; opacity: 0.03; }
+/* Points verts du fond à peine visibles sur fond sombre : on les éclaircit */
+[data-theme="dark"] body {
+  background-image: radial-gradient(rgba(143, 217, 175, 0.05) 0.5px, transparent 0.6px);
+}
+/* --primary devient clair : on garde du vert foncé pour les 3 aplats qui l'utilisaient */
+[data-theme="dark"] .marquee { background: #0B1713; border-block-color: #0B1713; }
+[data-theme="dark"] .btn--primary { color: #07110C; }
+[data-theme="dark"] .btn--primary:hover { background: var(--accent-ink); color: #07110C; }
+[data-theme="dark"] .project__link--primary { color: #07110C; }
+[data-theme="dark"] .project__link--primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: #07110C; }
+
+/* ============================================================
+   À propos / contact — responsive
+   ============================================================ */
+@media (max-width: 760px) {
+  .about { grid-template-columns: 1fr; }
 }
 
 /* ============================================================

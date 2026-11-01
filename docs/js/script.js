@@ -431,7 +431,109 @@ function initProgress() {
 }
 
 /* ------------------------------------------------------------
-   7. INIT
+   8. THEME TOGGLE (clair / sombre)
+   Le thème initial est posé par le script inline du <head>.
+   Ici on gère juste le bouton + la persistance.
+   ------------------------------------------------------------ */
+
+function initTheme() {
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+
+  const root = document.documentElement;
+
+  const sync = () => {
+    const isDark = root.getAttribute("data-theme") === "dark";
+    toggle.setAttribute("aria-pressed", String(isDark));
+    toggle.setAttribute(
+      "aria-label",
+      isDark ? "Passer au thème clair" : "Passer au thème sombre"
+    );
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", isDark ? "#0E1512" : "#FFFFFF");
+  };
+
+  sync();
+
+  toggle.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
+    sync();
+  });
+}
+
+/* ------------------------------------------------------------
+   9. CONTACT FORM (envoi via Formspree, sans quitter la page)
+   ------------------------------------------------------------ */
+
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("contact-status");
+  if (!form || !status) return;
+
+  const setStatus = (msg, type) => {
+    status.textContent = msg;
+    status.classList.remove("is-ok", "is-err");
+    if (type) status.classList.add(type);
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Garde-fou : tant que l'ID Formspree n'est pas renseigné.
+    if (form.action.includes("VOTRE_ID")) {
+      setStatus(
+        "Formulaire non configuré : renseignez votre identifiant Formspree.",
+        "is-err"
+      );
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn ? btn.textContent : "";
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Envoi…";
+    }
+    setStatus("");
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        form.reset();
+        setStatus("Merci ! Votre message a bien été envoyé.", "is-ok");
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const msg =
+          data.errors && data.errors.length
+            ? data.errors.map((x) => x.message).join(", ")
+            : "Une erreur est survenue. Réessayez ou écrivez-moi par email.";
+        setStatus(msg, "is-err");
+      }
+    } catch (err) {
+      setStatus(
+        "Impossible d'envoyer le message. Vérifiez votre connexion.",
+        "is-err"
+      );
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    }
+  });
+}
+
+/* ------------------------------------------------------------
+   10. INIT
    ------------------------------------------------------------ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -444,6 +546,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal(); // après le contenu dynamique pour observer les .reveal injectés
   initPanelGlow(); // après l'injection des cartes
   initProgress();
+  initTheme();
+  initContactForm();
 
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
